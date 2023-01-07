@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Pokedex</title>
+        <link href="style.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="main">
+            <h2>Pokedex</h2>
+            <div class="pokemon-boxes">
+                <div class="pokemon-box">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="">
+                    <p>Dito</p>
+                </div><!--pokemon-box-->
+                <div class="pokemon-box">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="">
+                    <p>Dito</p>
+                </div><!--pokemon-box-->
+                <div class="pokemon-box">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="">
+                    <p>Dito</p>
+                </div><!--pokemon-box-->
+                <div class="pokemon-box">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="">
+                    <p>Dito</p>
+                </div><!--pokemon-box-->
+                <div class="pokemon-box">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="">
+                    <p>Dito</p>
+                </div><!--pokemon-box-->
+                <div class="pokemon-box">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="">
+                    <p>Dito</p>
+                </div><!--pokemon-box-->
+            </div><!--pokemon-boxes-->
+        </div><!--main-->
+        <script>
+            fetch('https://pokeapi.co/api/v2/pokemon?limit=10')
+                .then(Response => Response.json())
+                .then(allpokemon => {
+
+                    var pokemons = [];
+
+                    allpokemon.results.map((val)=>{
+
+                        fetch(val.url)
+                            .then(Response => Response.json())
+                            .then(pokemonSingle => {
+                                pokemons.push({nome:val.name,imagem:pokemonSingle.sprites.front_default});
+
+                                if(pokemons.length == 10){
+                                    //finalizamos nossas requisicoes.
+                                    console.log(pokemons)
+                                }
+                        })
+
+                    })
+                   
+                })
+        </script>
+    </body>
+</html>
